@@ -7,7 +7,7 @@ difference()
         translate([-2,-7.5,0]) cuber([4,15,4.8],1.5);
         translate([-15,-10,0]) cube([30,20,1]);
     }
-    translate([-1,-1,0]) cube([2.3,2.3,5]);
+    translate([-1,-1-3,0]) cube([2.3,2.3,5]);
 }
 
 module cuber(dim,r)
