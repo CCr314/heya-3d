@@ -3,7 +3,7 @@ include <secteur.scad>
 
 di=95.6;  // diametre intérieur tube
 
-hf=10; // hauteur bas
+hf=12; // hauteur bas
 
 hb=7;  // hauteur bouton base carte
 
@@ -27,10 +27,12 @@ jeu=.5;
 alphaUsb=90+20-44;
 
 //translate([0,0,hf+hb])  rotate([180,0,-22]) 
-haut();
+//haut();
 
-//bas();
-//translate([0,0,12]) decoupeFond();
+//projection(false) bas();
+//translate([0,0,12]) 
+projection() 
+decoupeFond();
 
 
 module haut()
@@ -114,15 +116,18 @@ difference()
                     union()
                     {
                         translate([-lp/2-.5,dp/2-xp-.5,0]) cube([lp+2,xp+1,hp+.5]);
-                        #translate([-lp/2-3.8,dp/2-10,0]) cube([lp+5,10,5]);
+                        #translate([-lp/2-3.8,dp/2-10,0]) cube([lp+5,10,7.5 ]);
                     }
                 }
             }
+            
+            /*
             //evidement
             for(i=[0:1:2])
             {
                 rotate([0,0,i*360/3+22.5]) secteur(hf,di-3,80);
             }
+            */
             
         }
         
@@ -179,14 +184,14 @@ module decoupeFond()
 ep=3;
     difference()
     {
-        cylinder(ep,di/2,di/2,$fnerror=200);
+        cylinder(ep,di/2,di/2,$fn=100);
         for(i=[0:1:2])
         {
-            rotate([0,0,20+i*360/3]) translate([0,37,0])       cylinder(ep,2.5,2.5,$fn=20);
+            rotate([0,0,20+i*360/3]) translate([0,37,0])       cylinder(ep,2.5,2.5,$fn=100);
         }
         
-         rotate([0,0,alphaUsb]) translate([-20/2,-20-15/2+3,0])  cube([20,16,ep+.1]);
-         rotate([0,0,alphaUsb]) translate([0,20,0])  cylinder(ep,2,2,$fn=20);
+         rotate([0,0,alphaUsb]) translate([-20/2,-20-15/2+2,0])  cube([20,12,ep+.1]);
+         rotate([0,0,alphaUsb]) translate([0,20,0])  cylinder(ep,2,2,$fn=100);
     }
 }
 

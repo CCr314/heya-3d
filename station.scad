@@ -6,14 +6,23 @@ etx=95;
 
 d1=65;
 d2=85;
-d3=94;
+d3=96;
 
 yclou=(d0/2-d2/2)/2+d2/2;
 
-fond();
-color("gray") translate([0,0,3+2]) e1(); 
-translate([0,0,3+2+9+2]) e2();
-//translate([0,0,3+2+9+2+9+2]) facade();
+hc=0;
+
+//projection() fond();
+//color("gray") translate([0,0,3+hc])
+projection()
+c1(); 
+
+//translate([0,0,3+hc+9+hc])
+//projection()
+//c2();
+
+//translate([0,0,3+hc+9+hc+9+hc]) 
+//projection() facade();
 
 
 module fond()
@@ -22,14 +31,14 @@ module fond()
     {
         silouette(ep);
         vis() cylinder(ep,1.8,1.8,$fn=20);
-        translate([-15/2-20,-20/2,0]) cube([15,20,ep+.1]) ;
-        translate([20,0,0]) cylinder(ep+.1,2,2,$fn=20);
+        #translate([-12/2-19,-20/2,0]) cube([12,22,ep+.1]) ;
+        translate([21,1,0]) cylinder(ep+.1,2,2,$fn=20);
         // carte sd
         rotate([0,0,-90-45]) translate([-12,24+12,0]) cube([24,40-12+6,ep]);        
     }
 }
 
-module e1()
+module c1()
 {
     d=75;
     ep=9;
@@ -38,22 +47,27 @@ module e1()
         difference()
         {
             silouette(ep);
-
+            
+            
+            // Pods
             translate([0,0,-.5]) cylinder(ep+1,d/2,d/2,$fn=30);
             translate([etx,0,-.5]) cylinder(ep+1,d/2,d/2,$fn=30);
             translate([etx*2,0,-.5]) cylinder(ep+1,d/2,d/2,$fn=30);
             translate([etx*3,0,-.5]) cylinder(ep+1,d/2,d/2,$fn=30);
             
-            translate([-44,-28/2,-.5]) cube([96,28,ep+1]);
-            translate([etx,-28/2,-.5]) cube([52,28,ep+1]);
-            translate([2*etx,-28/2,-.5]) cube([52,28,ep+1]);
-            translate([3*etx,-28/2,-.5]) cube([52,28,ep+1]);
+            // evidement barette centrale
+            translate([-40,-28/2,-.5]) cube([90,28,ep+1]);
+            translate([etx,-28/2,-.5]) cube([50,28,ep+1]);
+            translate([2*etx,-28/2,-.5]) cube([50,28,ep+1]);
+            translate([3*etx,-28/2,-.5]) cube([42,28,ep+1]);
             
             // prise usb + antene
-            translate([-24/2,-d0/2,-.5]) cube([24,d0/2+40,ep+1]);
+            translate([-10,0,-.5]) cube([12,d/2+5,ep+1]);
+            translate([-24/2,-d0/2,-.5]) cube([24,d0/2,ep+1]);
             // carte sd
-            rotate([0,0,-90-45]) translate([-10,24,0]) cube([20,40,ep]);
-            
+            rotate([0,0,-90-45]) translate([-15,24,0]) cube([30,35,ep]);
+            // composant radio
+            rotate([0,0,+45]) translate([-10,24,0]) cube([20,15,ep]);            
             vis() cylinder(ep,1.8,1.8,$fn=20);
             visCrochet(ep+1,10);
         }
@@ -64,7 +78,7 @@ module e1()
     }
 }
 
-module e2()
+module c2()
 {
     ep=9;
     d=d3;
@@ -101,19 +115,19 @@ module facade()
     {
 
         silouette(ep);
-        translate([0,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=30);
-        translate([etx,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=30);
-        translate([etx*2,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=30);
-        translate([etx*3,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=30);
+        translate([0,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=100);
+        translate([etx,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=100);
+        translate([etx*2,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=100);
+        translate([etx*3,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=100);
         
         visCrochet(ep+1,4.2);
 
     }
 
-    translate([0,0,0]) cylinder(ep,d1/2,d1/2,$fn=30);
-    translate([etx,0,0]) cylinder(ep,d1/2,d1/2,$fn=30);
-    translate([etx*2,0,0]) cylinder(ep,d1/2,d1/2,$fn=30);
-    translate([etx*3,0,0]) cylinder(ep,d1/2,d1/2,$fn=30);
+    translate([0,0,0]) cylinder(ep,d1/2,d1/2,$fn=100);
+    translate([etx,0,0]) cylinder(ep,d1/2,d1/2,$fn=100);
+    translate([etx*2,0,0]) cylinder(ep,d1/2,d1/2,$fn=100);
+    translate([etx*3,0,0]) cylinder(ep,d1/2,d1/2,$fn=100);
 
         
 }
@@ -135,12 +149,13 @@ module clou()
 module vis()
 {
         translate([-d0/2+6,0,0]) children();
-        translate([-6,d0/2-8,0]) children();
+        rotate([0,0,18])translate([0,d0/2-6,0]) children();
         rotate([0,0,-18]) translate([0,-d0/2+6,0]) children();
         translate([20,-d0/2+6,0]) children();
         translate([3*etx/2,d0/2-6,0]) children();
         translate([3*etx/2,-d0/2+6,0]) children();
-        translate([3*etx+6,d0/2-8,0]) children();
+        #translate([3*etx,0,0]) rotate([0,0,-18]) 
+            translate([0,d0/2-6,0]) children();
         translate([3*etx,-d0/2+6,0]) children();
         translate([etx*3+d0/2-6,0,0]) children();
 }
@@ -156,8 +171,9 @@ module visCrochet(ep,d)
 
 module plots(ep,first=false)
 {
-    rotate([0,0,20]) plot(ep);
-    rotate([0,0,20+360/3]) plot(ep);
+    #rotate([0,0,-16]) plot(ep);
+        
+    #rotate([0,0,16+360/3]) plot(ep);
     if(!first)
         rotate([0,0,180+45]) plot(ep);
 
@@ -170,9 +186,9 @@ difference()
 {
     hull()
     {   
-        translate([0,37,0]) cylinder(ep,4,4,$fn=20);
+        translate([0,32.5,0]) cylinder(ep,4,4,$fn=20);
         translate([-6,42,0]) cube([12,.1,ep]);
     }
-    translate([0,37,0]) cylinder(ep,1.2,1.2,$fn=20);
+    translate([0,32.5,0]) cylinder(ep,1.2,1.2,$fn=20);
 }
 }
