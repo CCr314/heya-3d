@@ -12,7 +12,8 @@ yclou=(d0/2-d2/2)/2+d2/2;
 
 hc=0;
 
-//projection() fond();
+//projection() 
+//fond();
 //color("gray") translate([0,0,3+hc])
 projection()
 c1(); 
@@ -22,7 +23,8 @@ c1();
 //c2();
 
 //translate([0,0,3+hc+9+hc+9+hc]) 
-//projection() facade();
+// projection() 
+//facade();
 
 
 module fond()
@@ -31,10 +33,14 @@ module fond()
     {
         silouette(ep);
         vis() cylinder(ep,1.8,1.8,$fn=20);
-        #translate([-12/2-19,-20/2,0]) cube([12,22,ep+.1]) ;
+        translate([-12/2-19,-20/2,0]) cube([12,22,ep+.1]) ;
         translate([21,1,0]) cylinder(ep+.1,2,2,$fn=20);
         // carte sd
-        rotate([0,0,-90-45]) translate([-12,24+12,0]) cube([24,40-12+6,ep]);        
+        rotate([0,0,-90-45]) translate([-16,24,0]) cube([32,40-12+6+8,ep]);        
+        
+        
+        translate([55,40,0]) fixation(ep,10,5);
+        translate([3*etx-55,40,0]) fixation(ep,10,5);
     }
 }
 
@@ -70,6 +76,10 @@ module c1()
             rotate([0,0,+45]) translate([-10,24,0]) cube([20,15,ep]);            
             vis() cylinder(ep,1.8,1.8,$fn=20);
             visCrochet(ep+1,10);
+            
+            // fixation
+            translate([55,40,0]) fixation(ep,10,10);
+        translate([3*etx-55,40,0]) fixation(ep,10,10);
         }
         plots(ep,true);
         translate([etx,0,0]) plots(ep);
@@ -154,7 +164,7 @@ module vis()
         translate([20,-d0/2+6,0]) children();
         translate([3*etx/2,d0/2-6,0]) children();
         translate([3*etx/2,-d0/2+6,0]) children();
-        #translate([3*etx,0,0]) rotate([0,0,-18]) 
+        translate([3*etx,0,0]) rotate([0,0,-18]) 
             translate([0,d0/2-6,0]) children();
         translate([3*etx,-d0/2+6,0]) children();
         translate([etx*3+d0/2-6,0,0]) children();
@@ -171,9 +181,9 @@ module visCrochet(ep,d)
 
 module plots(ep,first=false)
 {
-    #rotate([0,0,-16]) plot(ep);
+    rotate([0,0,-16]) plot(ep);
         
-    #rotate([0,0,16+360/3]) plot(ep);
+    rotate([0,0,16+360/3]) plot(ep);
     if(!first)
         rotate([0,0,180+45]) plot(ep);
 
@@ -191,4 +201,16 @@ difference()
     }
     translate([0,32.5,0]) cylinder(ep,1.2,1.2,$fn=20);
 }
+}
+
+
+module fixation(ep,db,dh)
+{
+    cylinder(ep,db/2,db/2,$fn=20);
+    hull()
+    {
+        translate([0,0,0])cylinder(ep,dh/2,dh/2,$fn=20);
+        translate([0,10,0])cylinder(ep,dh/2,dh/2,$fn=20);
+    }
+
 }
