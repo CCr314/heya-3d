@@ -10,16 +10,16 @@ hb=7;  // hauteur bouton base carte
 dc=81.5;  // diametre carte
 
 lp=15;  // largeur pied support vitre
-xp=3;   // epaisseur pied support vitre
-dp=86+2*xp;  // diametre exterier pieds
+xp=3.5;   // epaisseur pied support vitre
+dp=86+2*xp;  // diametre exterieur pieds
 
 hclip=2.7;
-hp=10+hclip;  // hauteur pied support vitre
+hp=9.5+hclip;  // hauteur pied support vitre
 
 
-dv=94;  // diametre vitre
+dv=95;  // diametre vitre
 epv=1;  // epaisseur bord transversal vitre
-epvf=2;  // epaisseur fond suport vitre vitre
+epvf=1.5;  // epaisseur fond suport vitre vitre
 hv=6;
 
 jeu=.5;
@@ -27,12 +27,12 @@ jeu=.5;
 alphaUsb=90+20-44;
 
 //translate([0,0,hf+hb])  rotate([180,0,-22]) 
-//haut();
+haut();
 
 //projection(false) bas();
 //translate([0,0,12]) 
-projection() 
-decoupeFond();
+//projection() 
+//decoupeFond();
 
 
 module haut()
@@ -49,12 +49,12 @@ module haut()
             {
                 union()
                 {
-                    translate([-lp/2-2,dp/2-xp,0]) cube([lp+4,xp,4]);
+                    translate([-lp/2-2,dp/2-xp,0]) cube([lp+4,xp,5.2]);
                     translate([-lp/2,dp/2-xp,0]) cube([lp,xp,hp-hclip]);
                     
                     hull()
                     {
-                        translate([-lp/2+3,dp/2-xp-.8,hp-hclip]) cube([lp-6,xp,.1]);
+                        #translate([-lp/2+3.7,dp/2-xp-.8,hp-hclip]) cube([lp-6,xp,.1]);
                         translate([-lp/2,dp/2-xp+.8,hp-hclip]) cube([lp,xp,hclip]);
                     }
                     
