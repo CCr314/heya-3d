@@ -5,7 +5,59 @@ d=95.7;
 ep1=3;
 ep2=6;
 
-decoupe(false);
+//decoupe(false);
+//translate([0,0,5]) decoupe(true);
+
+
+supportVitre();
+
+module supportVitre()
+{
+j=1;
+hclip=2.7;
+hp=7; 
+ep=1.5;
+l=15;
+r=41;
+
+    // disque haut
+    difference()
+    {
+        cylinder(8,d/2-j,d/2-j,$fn=200);
+        translate([0,0,-.1]) cylinder(8-ep+.1,d/2-j-ep,d/2-j-ep,$fn=200);
+        cylinder(8+.1,d/2-j-4,d/2-j-4,$fn=200);
+    }
+    
+    // pieds
+    intersection()
+    {
+        cylinder(8+hp+hclip,d/2-j-1,d/2-j-1,$fn=200);
+        difference()
+        {
+            for(i=[0:1:2])
+            {
+               
+                rotate([0,0,i*360/3]) translate([r+.5,-l/2,8]) union()
+                {
+                    cube([8,l,hp]);
+                    translate([0,-2,0]) cube([8,l+4,3.5]);  // epaulement pied
+                    hull()
+                    {
+                        translate([-1.5,0,hp]) cube([9.5,l,.1]);
+                        translate([2,0,hp])cube([8,l,hclip]);
+                    }
+                    
+                }
+           }
+           cylinder(8+hp,d/2-j-4,d/2-j-4,$fn=200);
+        }
+    }
+    
+
+
+}
+
+
 
 module decoupe(bas)
 {
@@ -52,9 +104,9 @@ module decoupe(bas)
         {
             // pieds vitre
             if(bas)
-                rotate([0,0,-40+i*360/3]) translate([-16/2,40,-.1]) cube([16,8,ep+.2]); 
+                rotate([0,0,-40+i*360/3]) translate([-16/2,38,-.1]) cube([16,10,ep+.2]); 
             else
-                rotate([0,0,-40+i*360/3]) translate([-16/2,43,-.1]) cube([16,5,ep+.2]); 
+                rotate([0,0,-40+i*360/3]) translate([-16/2,41,-.1]) cube([16,7,ep+.2]); 
                 
             // trou fond boitier
             rotate([0,0,-0+i*360/3]) translate([37,0,-.1]) cylinder(ep+.2,1.2,1.2,$fn=10); 
