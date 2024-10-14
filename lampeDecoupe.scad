@@ -5,18 +5,20 @@ d=95.7;
 ep1=3;
 ep2=6;
 
-//decoupe(false);
-//translate([0,0,5]) decoupe(true);
+//projection() decoupe(false);
+//translate([0,0,5])
+//projection()
+// decoupe(true);
 
 
 supportVitre();
 
 module supportVitre()
 {
-j=1;
+j=0.3;
 hclip=2.7;
-hp=7; 
-ep=1.5;
+hp=7.8; 
+ep=.8;
 l=15;
 r=41;
 
@@ -31,7 +33,7 @@ r=41;
     // pieds
     intersection()
     {
-        cylinder(8+hp+hclip,d/2-j-1,d/2-j-1,$fn=200);
+        cylinder(8+hp+hclip,d/2-j-.5,d/2-j-.5,$fn=200);
         difference()
         {
             for(i=[0:1:2])
@@ -49,7 +51,17 @@ r=41;
                     
                 }
            }
-           cylinder(8+hp,d/2-j-4,d/2-j-4,$fn=200);
+           
+           hull()
+           {
+               translate([0,0,8-.1]) cylinder(.2,d/2-j-4,d/2-j-4,$fn=200);
+               for(i=[0:1:2])
+                {
+               
+                rotate([0,0,i*360/3]) translate([0,-l/2,8+hp-2])  cube([r+.5,l,2]);
+                }
+             
+           }
         }
     }
     
@@ -81,7 +93,7 @@ module decoupe(bas)
         translate([25,12,-.1]) cube([10,7,ep+.2]);
         
         // resistance gauche
-        translate([-30,12,-.1]) cube([10,7,ep+.2]);
+        translate([-32,11,-.1]) cube([10,7,ep+.2]);
         
         // antenne
         translate([-9,-18-22,-.1]) cube([9,22,ep+.2]);
@@ -96,7 +108,7 @@ module decoupe(bas)
         // Lora
         if(!bas)
         {
-            rotate([0,0,90+45]) translate([-17,17,-.1]) cube([27,20,ep+.2]);
+            rotate([0,0,90+45]) translate([-17,17,-.1]) cube([27,22,ep+.2]);
         }
         
         
@@ -111,10 +123,10 @@ module decoupe(bas)
             // trou fond boitier
             rotate([0,0,-0+i*360/3]) translate([37,0,-.1]) cylinder(ep+.2,1.2,1.2,$fn=10); 
             // trou carte
-            rotate([0,0,45+i*360/3]) translate([32,0,-.1]) cylinder(ep+.2,1.2,1.2,$fn=10); 
+            rotate([0,0,45+i*360/3]) translate([32.6,0,-.1]) cylinder(ep+.2,1.2,1.2,$fn=10); 
         }
         
-        // trou fond
+        
         
         
     }
