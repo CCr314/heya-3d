@@ -49,7 +49,7 @@ module haut()
             {
                 union()
                 {
-                    translate([-lp/2-2,dp/2-xp,0]) cube([lp+4,xp,5.2]);
+                    #translate([-lp/2-2,dp/2-xp,0]) cube([lp+4,xp,5.2]);
                     translate([-lp/2,dp/2-xp,0]) cube([lp,xp,hp-hclip]);
                     
                     hull()

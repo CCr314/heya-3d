@@ -14,7 +14,7 @@ hu2=7;
 lu1=8.5;
 lu2=12;
 
-deaxe=-2;
+deaxe=0;
 
 difference()
 {
@@ -25,8 +25,8 @@ difference()
        cylinder(h,di/2,di/2,$fn=100); 
     }
     
-    translate([deaxe,di/2-p,zu]) trouOblong(lu1,hu1/2);
-    translate([deaxe,di/2-p+1,zu]) trouOblong(lu2,hu2/2);
+    //translate([deaxe,di/2-p,zu]) trouOblong(lu1,hu1/2);
+    translate([deaxe,di/2-p,zu]) trouOblong(lu2,hu2/2);
 
     
 }

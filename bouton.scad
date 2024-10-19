@@ -4,10 +4,13 @@ difference()
 {
     union()
     {
-        translate([-2,-7.5,0]) cuber([4,15,4.8],1.5);
-        translate([-15,-10,0]) cube([30,20,1]);
+        translate([-3,-5,0]) cuber([6,10,4+3.8],1.5);
+        translate([-15,-7.5,0]) cube([30,15,4]);
     }
-    translate([-1,-1-3,0]) cube([2.3,2.3,5]);
+    translate([-2.3/2,-2.3/2,0]) cube([2.3,2.3,4+3.8]);
+    
+    // rainure
+    translate([-15,-4.5/2,0]) cube([30,4.5,3]);
 }
 
 module cuber(dim,r)
