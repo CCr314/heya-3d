@@ -1,16 +1,21 @@
 // decoupe usb
 
 include <ecrouM4.scad>
+include <ecrouM8.scad>
 include <secteur.scad>
 
-roue();
+//roue();
 //entretoise();
 
-module entretoise(h=8.2)
+//translate([0,0,30]) verrou();
+
+axeponceuse();
+
+module entretoise(h=6.1)
 {
     difference()
     {
-        cylinder(h,6,6,$fn=20);
+        cylinder(h,7,7,$fn=20);
         cylinder(h,4.3,4.3,$fn=20);
         
     }
@@ -27,6 +32,21 @@ module entretoise2(h=10)
         }
         cylinder(h,4.3,4.3,$fn=20);
         
+    }
+}
+
+
+module axeponceuse()
+{
+        di=96;
+    da=18;
+    dr=22.5;
+    h=20;
+    difference()
+    {
+        cylinder(7.2,dr/2+.3,dr/2-.3,$fn=40);
+        cylinder(h,4.2,4.2,$fn=20);
+        //ecrouM8(5);
     }
 }
 
@@ -93,7 +113,7 @@ module roue()
             translate([0,0,h-3]) cylinder(3,di/2,di/2-1,$fn=100);
             
         }
-        cylinder(h,da/2,da/2,$fn=20);
+        cylinder(h+.2,da/2,da/2,$fn=20);
         cylinder(7.2,dr/2,dr/2,$fn=40);
         translate([0,0,h-7.2]) cylinder(7.2,dr/2,dr/2,$fn=40);
         
@@ -104,17 +124,17 @@ module roue()
             ep=4;
             intersection()
             {
-                cylinder(h,di/2-1.2*ep,di/2-1.2*ep,$fn=100);
+                cylinder(h+.1,di/2-1.2*ep,di/2-1.2*ep,$fn=100);
                 union()
                 {
                 
-                translate([ep,ep,0]) cube([di/2,di/2,h]);
-                translate([-di/2-ep/2,ep/2,0]) cube([di/2,di/2,h]);
-                translate([ep/2,-di/2-ep/2,0]) cube([di/2,di/2,h]);
-                translate([-di/2-ep/2,-di/2-ep/2,0]) cube([di/2,di/2,h]);
+                translate([ep,ep,0]) cube([di/2,di/2,h+.1]);
+                translate([-di/2-ep/2,ep/2,0]) cube([di/2,di/2,h+.1]);
+                translate([ep/2,-di/2-ep/2,0]) cube([di/2,di/2,h+.1]);
+                translate([-di/2-ep/2,-di/2-ep/2,0]) cube([di/2,di/2,h+.1]);
                 }
             }
-            cylinder(h,14,14,$fn=20);
+            cylinder(h+.1,14,14,$fn=20);
         }
         
         translate([di/2-15,0,10]) rotate([-90,0,0]) ecrouM4(6);
@@ -125,12 +145,52 @@ module roue()
         translate([-40-5,di/2-15,10]) rotate([0,90,0]) cylinder(40,5,5,$fn=20);
         
         // trou fraise
-        #hull()
+        hull()
         {
             rotate([0,0,-90-45+5]) translate([di/2-15,0,10]) rotate([0,90,0]) cylinder(20,5,5,$fn=20);
             rotate([0,0,-90-45-5]) translate([di/2-15,0,10]) rotate([0,90,0]) cylinder(20,5,5,$fn=20);
         }
     }
     
+    translate([-34,-9.8,0]) difference()
+    {
+        cylinder(h,10,10,$fn=20);
+        cylinder(h,4.2,4.2,$fn=20);
+        ecrouM8(9);
+        
+    }
     
 }
+
+module verrou()
+{
+h=25;
+di=96;
+da=18;
+dr=22.5;
+   ep=4;
+   
+   difference()
+   {
+    union()
+    {
+    intersection()
+    {
+        cylinder(h+.1,di/2-1.2*ep-.5,di/2-1.2*ep-.5,$fn=100);
+        translate([-di/2-ep/2,-di/2-ep/2,0]) cube([di/2,di/2,h+.1]);
+    }
+    translate([0,0,h-3]) intersection()
+    {
+        cylinder(3,di/2+3,di/2+3,$fn=100);
+        translate([-di/2-ep/2,-di/2-ep/2,0]) cube([di/2,di/2,h+.1]);
+    }
+    }
+    translate([-34,-9.8,0])
+        cylinder(h-3,12,12,$fn=20);
+    translate([-34,-9.8,0])
+        cylinder(h+.2,4.5,4.5,$fn=20);
+    cylinder(h+.2,14.3,14.3,$fn=20);
+    }
+}
+
+

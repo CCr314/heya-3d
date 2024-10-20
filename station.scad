@@ -4,27 +4,36 @@ ep=3;
 d0=128;
 etx=95;
 
-d1=65;
-d2=85;
+d1=67; // 65;
+d2=87; // 85;
 d3=96;
 
 yclou=(d0/2-d2/2)/2+d2/2;
 
-hc=0;
+hc=10;
+
 
 //projection() 
 //fond();
+
+//rotate([0,0,-90-45]) translate([-16+.5,24+.5,0]) trappeSD();
+
+
 //color("gray") translate([0,0,3+hc])
-projection()
-c1(); 
+//projection()
+//c1(); 
+
 
 //translate([0,0,3+hc+9+hc])
 //projection()
 //c2();
 
-//translate([0,0,3+hc+9+hc+9+hc]) 
+//translate([0,0,3+hc+9+hc+6]) pmmaC2();
+
+
+translate([0,0,3+hc+9+hc+9+hc]) 
 // projection() 
-//facade();
+facade();
 
 
 module fond()
@@ -36,12 +45,33 @@ module fond()
         translate([-12/2-19,-20/2,0]) cube([12,22,ep+.1]) ;
         translate([21,1,0]) cylinder(ep+.1,2,2,$fn=20);
         // carte sd
-        rotate([0,0,-90-45]) translate([-16,24,0]) cube([32,40-12+6+8,ep]);        
+        rotate([0,0,-90-45]) translate([-16,24,0]) cube([32,42,ep]);        
         
         
         translate([55,40,0]) fixation(ep,10,5);
         translate([3*etx-55,40,0]) fixation(ep,10,5);
     }
+}
+
+module trappeSD()
+{
+ep=3;
+x=31;
+y=41;
+
+    difference()
+    {
+        union()
+        {
+            cube([x,y,ep]);
+
+            // griffe arriere
+            translate([.5,-4,ep]) cube([x-1,8,ep]);
+        }
+        // vis
+        translate([x/2,y-3.5]) cylinder(ep,3,1.6,$fn=20);
+    }
+    
 }
 
 module c1()
@@ -70,8 +100,11 @@ module c1()
             // prise usb + antene
             translate([-10,0,-.5]) cube([12,d/2+5,ep+1]);
             translate([-24/2,-d0/2,-.5]) cube([24,d0/2,ep+1]);
+            
             // carte sd
             rotate([0,0,-90-45]) translate([-15,24,0]) cube([30,35,ep]);
+            rotate([0,0,-90-45]) translate([0,24+42-3.5,0]) cylinder(ep+1,.8,.8,$fn=10);
+            
             // composant radio
             rotate([0,0,+45]) translate([-10,24,0]) cube([20,15,ep]);            
             vis() cylinder(ep,1.8,1.8,$fn=20);
@@ -101,11 +134,38 @@ module c2()
             translate([etx*2,0,-.5]) cylinder(ep+1,d/2,d/2,$fn=30);
             translate([etx*3,0,-.5]) cylinder(ep+1,d/2,d/2,$fn=30);
             
-            translate([-44,-28/2,-.5]) cube([2*44+3*etx,28,ep+1]);
+            // decoupe centrale
+            translate([0,-50/2,-.5]) cube([3*etx,50,ep+1]);
             vis() cylinder(ep,1.2,1.2,$fn=20);
             visCrochet(ep+1,4.2);
             
         }    
+}
+
+module pmmaC2()
+{
+d=d3-1;
+ep=3.2;
+
+dc=60.5; // diametre carte centrale;
+
+    difference()
+    {
+        union()
+        {
+            translate([0,0,0]) cylinder(ep,d/2,d/2,$fn=30);
+            translate([etx,0,0]) cylinder(ep,d/2,d/2,$fn=30);
+            translate([etx*2,0,0]) cylinder(ep,d/2,d/2,$fn=30);
+            translate([etx*3,0,0]) cylinder(ep,d/2,d/2,$fn=30);       
+            translate([0,-50/2+1,0]) cube([3*etx,50-2,ep]);
+        }
+
+        translate([0,0,-.5]) cylinder(ep+1,dc/2,dc/2,$fn=30);
+        translate([etx,0,-.5]) cylinder(ep+1,dc/2,dc/2,$fn=30);
+        translate([etx*2,0,-.5]) cylinder(ep+1,dc/2,dc/2,$fn=30);
+        translate([etx*3,0,-.5]) cylinder(ep+1,dc/2,dc/2,$fn=30);       
+        }
+
 }
 
 
@@ -138,7 +198,7 @@ module facade()
     translate([etx,0,0]) cylinder(ep,d1/2,d1/2,$fn=100);
     translate([etx*2,0,0]) cylinder(ep,d1/2,d1/2,$fn=100);
     translate([etx*3,0,0]) cylinder(ep,d1/2,d1/2,$fn=100);
-
+    //clous();
         
 }
     

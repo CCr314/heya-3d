@@ -5,16 +5,38 @@ di=95.6;  // diametre intérieur tube
 
 l=22;
 p=8;
-h=10;
+h=11.5;
 
 zu=6;
 hu1=3.5;
 hu2=7;
+hu3=8;
 
 lu1=8.5;
 lu2=12;
+lu3=14;
 
 deaxe=0;
+
+//centreur();
+priseLampe();
+
+module centreur()
+{
+    difference()
+    {
+    hull()
+    {
+        trouOblong(20,lu2-.5,hu2/2);
+        translate([0,-3,0]) trouOblong(5,lu2-1.5,hu2/2-1);
+    }
+    translate([0,20-10,0]) rotate([-90,0,0]) cylinder(10,1.2,1.2,$fn=10);
+
+    }
+}
+
+module priseLampe()
+{
 
 difference()
 {
@@ -25,14 +47,17 @@ difference()
        cylinder(h,di/2,di/2,$fn=100); 
     }
     
-    //translate([deaxe,di/2-p,zu]) trouOblong(lu1,hu1/2);
-    translate([deaxe,di/2-p,zu]) trouOblong(lu2,hu2/2);
-
+    //translate([deaxe,di/2-p,zu]) trouOblong(p,lu1,hu1/2);
+    hull()
+    {
+        translate([deaxe,di/2-p,zu]) trouOblong(p,lu2,hu2/2);
+        translate([deaxe,di/2,zu]) trouOblong(p,lu3,hu3/2);
+    }
     
 }
+}
 
-
-module trouOblong(l,r)
+module trouOblong(p,l,r)
 {
     hull()
     {
