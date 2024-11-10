@@ -7,15 +7,15 @@ ep2=6;
 
 //projection() decoupe(false);
 //translate([0,0,5])
-projection()
- decoupe(true);
+//projection()
+ //decoupe(true);
 
 
-//supportVitre();
+supportVitre();
 
 module supportVitre()
 {
-j=0.3;
+j=0.7;
 hclip=2.7;
 hp=7.8; 
 ep=.8;
