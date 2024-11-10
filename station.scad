@@ -28,12 +28,13 @@ hc=10;
 //projection()
 //c2();
 
-//translate([0,0,3+hc+9+hc+6]) pmmaC2();
+//translate([0,0,3+hc+9+hc+6]) 
+projection() pmmaC2();
 
 
-translate([0,0,3+hc+9+hc+9+hc]) 
+//translate([0,0,3+hc+9+hc+9+hc]) 
 // projection() 
-facade();
+//facade();
 
 
 module fond()
@@ -112,12 +113,15 @@ module c1()
             
             // fixation
             translate([55,40,0]) fixation(ep,10,10);
-        translate([3*etx-55,40,0]) fixation(ep,10,10);
+            translate([3*etx-55,40,0]) fixation(ep,10,10);
+            #trouCentreur(ep);
         }
         plots(ep,true);
         translate([etx,0,0]) plots(ep);
         translate([2*etx,0,0]) plots(ep);
         translate([3*etx,0,0]) plots(ep);
+        
+
     }
 }
 
@@ -138,7 +142,7 @@ module c2()
             translate([0,-50/2,-.5]) cube([3*etx,50,ep+1]);
             vis() cylinder(ep,1.2,1.2,$fn=20);
             visCrochet(ep+1,4.2);
-            
+            #trouCentreur(ep);
         }    
 }
 
@@ -147,7 +151,7 @@ module pmmaC2()
 d=d3-1;
 ep=3.2;
 
-dc=60.5; // diametre carte centrale;
+dc=61; // diametre carte centrale;
 
     difference()
     {
@@ -266,11 +270,20 @@ difference()
 
 module fixation(ep,db,dh)
 {
-    cylinder(ep,db/2,db/2,$fn=20);
+    cylinder(ep+.1,db/2,db/2,$fn=20);
     hull()
     {
-        translate([0,0,0])cylinder(ep,dh/2,dh/2,$fn=20);
-        translate([0,10,0])cylinder(ep,dh/2,dh/2,$fn=20);
+        translate([0,0,-.1])cylinder(ep+.2,dh/2,dh/2,$fn=20);
+        translate([0,10,-.1])cylinder(ep+.2,dh/2,dh/2,$fn=20);
     }
 
 }
+
+module trouCentreur(h)
+{
+    translate([30,50,-.1]) cylinder(h+.2,5.2,5.2,$fn=20);
+    translate([3*etx-30,50,-.1]) cylinder(h+.2,5.2,5.2,$fn=20);
+    translate([60,-50,-.1]) cylinder(h+.2,5.2,5.2,$fn=20);
+    translate([3*etx-60,-50,-.1]) cylinder(h+.2,5.2,5.2,$fn=20);
+
+    }

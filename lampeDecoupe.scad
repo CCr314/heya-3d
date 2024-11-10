@@ -8,7 +8,7 @@ ep2=6;
 //projection() decoupe(false);
 //translate([0,0,5])
 projection()
- decoupe(true);
+ decoupe(false);
 
 
 //supportVitre();
@@ -93,7 +93,7 @@ module decoupe(bas)
         
         translate([-7,-12,-.1]) cube([8,30,ep+.2]);
         
-        #translate([-32,22,-.1]) cube([30,6,ep+.2]);
+        translate([-32,22,-.1]) cube([30,6,ep+.2]);
         
         
         // composants droite
