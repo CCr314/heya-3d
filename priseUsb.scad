@@ -18,8 +18,8 @@ lu3=14;
 
 deaxe=0;
 
-//centreur();
-priseLampe();
+/*translate([deaxe,di/2-p,zu]) */ centreur();
+//priseLampe();
 
 module centreur()
 {
@@ -27,10 +27,10 @@ module centreur()
     {
     hull()
     {
-        trouOblong(20,lu2-.5,hu2/2);
-        translate([0,-3,0]) trouOblong(5,lu2-1.5,hu2/2-1);
+        translate([0,-p,0]) trouOblong(p,lu2,hu2/2);
+        translate([0,0,0]) trouOblong(p,lu3,hu3/2);
     }
-    translate([0,20-10,0]) rotate([-90,0,0]) cylinder(10,1.2,1.2,$fn=10);
+    translate([0,p,0]) rotate([-90,0,0]) cylinder(10,1.2,1.2,$fn=10);
 
     }
 }
@@ -40,11 +40,15 @@ module priseLampe()
 
 difference()
 {
-
-    intersection()
+    union()
     {
-        translate([-l/2,di/2-p,0]) cube([l,p,h]);
-       cylinder(h,di/2,di/2,$fn=100); 
+        intersection()
+        {
+           translate([-l/2,di/2-p,0]) cube([l,p,h]);
+           cylinder(h,di/2,di/2,$fn=100); 
+        }
+        translate([-l/2,di/2-p+2,0]) cylinder(6,2,1.8,$fn=20);
+        translate([l/2,di/2-p+2,0]) cylinder(6,2,1.8,$fn=20);
     }
     
     //translate([deaxe,di/2-p,zu]) trouOblong(p,lu1,hu1/2);
