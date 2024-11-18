@@ -8,7 +8,7 @@ ep2=6;
 //projection() decoupe(false);
 //translate([0,0,5])
 
-//projection()
+projection()
  decoupe(true);
 
  /*
