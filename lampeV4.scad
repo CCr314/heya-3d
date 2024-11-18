@@ -27,12 +27,12 @@ jeu=.5;
 alphaUsb=90+20-44;
 
 //translate([0,0,hf+hb])  rotate([180,0,-22]) 
-haut();
+//haut();
 
 //projection(false) bas();
 //translate([0,0,12]) 
-//projection() 
-//decoupeFond();
+projection() 
+decoupeFond();
 
 
 module haut()

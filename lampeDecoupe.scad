@@ -8,8 +8,8 @@ ep2=6;
 //projection() decoupe(false);
 //translate([0,0,5])
 
-projection()
- decoupe(true);
+//projection()
+// decoupe(false);
 
  /*
 projection()
@@ -17,9 +17,9 @@ projection()
 
 */
 
-supportVitre();
+//supportVitre();
 
-//fixeVitre();
+fixeVitre();
 
 module supportVitre()
 {
@@ -204,7 +204,7 @@ module decoupe(bas)
         translate([-16/2,16,-.1]) cube([16,32,ep+.2]);
         if(bas)
         {
-            translate([-22/2,16+15,-.1]) cube([22,32,ep+.2]);
+            translate([-22/2,16+12,-.1]) cube([22,32,ep+.2]);
             translate([-22/2,d/2-8+2,-.1]) cylinder(ep+.2,2.2,2.2,$fn=20);
             translate([22/2,d/2-8+2,-.1]) cylinder(ep+.2,2.2,2.2,$fn=20);
         }
@@ -262,9 +262,6 @@ module decoupe(bas)
             // trou carte
             rotate([0,0,45+i*360/3]) translate([32.6,0,-.1]) cylinder(ep+.2,1.2,1.2,$fn=10); 
         }
-        
-        
-        
         
     }
 }
