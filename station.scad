@@ -6,7 +6,7 @@ etx=95;
 
 d1=67; // 65;
 d2=87; // 85;
-d3=96;
+d3=100;
 
 yclou=(d0/2-d2/2)/2+d2/2;
 
@@ -26,10 +26,10 @@ hc=10;
 
 //translate([0,0,3+hc+9+hc])
 //projection()
-//c2();
+c2();
 
 //translate([0,0,3+hc+9+hc+6]) 
-projection() pmmaC2();
+//projection() pmmaC2();
 
 
 //translate([0,0,3+hc+9+hc+9+hc]) 
@@ -129,6 +129,7 @@ module c2()
 {
     ep=9;
     d=d3;
+    ly=55;  //largeur fente centrale
         difference()
         {
             silouette(ep);
@@ -139,7 +140,7 @@ module c2()
             translate([etx*3,0,-.5]) cylinder(ep+1,d/2,d/2,$fn=30);
             
             // decoupe centrale
-            translate([0,-50/2,-.5]) cube([3*etx,50,ep+1]);
+            translate([0,-ly/2,-.5]) cube([3*etx,ly,ep+1]);
             vis() cylinder(ep,1.2,1.2,$fn=20);
             visCrochet(ep+1,4.2);
             #trouCentreur(ep);
