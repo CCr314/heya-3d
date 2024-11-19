@@ -14,9 +14,9 @@ r=41;  // Rayon pied de maintien
 hp=8.2;
 hclip=5;
 
-//vitreSupport();
+vitreSupport();
 //translate([0,0,2*ep]) rotate([180,0,30]) 
-vitreTour();
+//vitreTour();
 
 module vitreSupport()
 {
@@ -44,7 +44,7 @@ module vitreSupport()
                         // clip
                         translate([r,-l/2,0]) hull()
                         {
-                            translate([-1.6,0,hp+ep]) cube([5,l,.1]);
+                            translate([-2,0,hp+ep]) cube([5,l,.1]);
                             translate([1,0,hp+ep]) cube([8,l,hclip]);
                         }
                         translate([r,-1.5-l/2,0]) cube([8,l+3,4.0]);  // epaulement pied
