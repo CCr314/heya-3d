@@ -22,7 +22,7 @@ difference()
         
         intersection()
         {
-            translate([0,0,ep]) cylinder(hp+hclip,d/2,de/2-6.5,$fn=200);
+            translate([0,0,ep]) cylinder(hp+hclip,d/2,de/2-5.5,$fn=200);
             for(i=[0:1:2])
             {
                 rotate([0,0,i*360/3]) translate([0,0,ep]) union()
@@ -35,12 +35,12 @@ difference()
                     }
                     
                     // clip
-                    translate([r,-l/2,0]) hull()
+                    #translate([r,-l/2,0]) hull()
                     {
-                        translate([-1.6,0,hp+ep]) cube([5,l,.1]);
+                        translate([-2.5,0,hp+ep]) cube([5,l,.1]);
                         translate([1,0,hp+ep]) cube([8,l,hclip]);
                     }
-                    translate([r,-1.5-l/2,0]) cube([8,l+3,4.0]);  // epaulement pied
+                    translate([r,-2-l/2,0]) cube([8,l+4,4.5]);  // epaulement pied
                 }
 
             }
@@ -52,7 +52,7 @@ difference()
             union()
             {
                 anneau(de,di,2*ep);
-                translate([0,0,2*ep]) anneau2(de,di,ep);
+                translate([0,0,2*ep]) anneau2(de+.4,di,ep);
             }
             //cylinder(hp+hclip,de/2,de/2,$fn=200);
             for(i=[0:1:5])
