@@ -9,15 +9,20 @@ ep2=6;
 //translate([0,0,5])
 
 //projection()
-// decoupe(false);
-
- 
-projection()
- decoupe(false);
 
 //supportVitre();
 
 //fixeVitre();
+
+projection()
+ decoupe(true);
+
+
+
+//supportVitre();
+
+//tourVitre();
+
 
 module supportVitre()
 {
@@ -100,7 +105,7 @@ hv=0; //2.8;
 
 }
 
-module fixeVitre()
+module tourVitre()
 {
 hv=3;
 j=0.2;
@@ -269,6 +274,15 @@ module decoupe(bas)
             rotate([0,0,-0+i*360/3]) translate([37,0,-.1]) cylinder(ep+.2,1.2,1.2,$fn=10); 
             // trou carte
             rotate([0,0,45+i*360/3]) translate([32.6,0,-.1]) cylinder(ep+.2,1.2,1.2,$fn=10); 
+            
+
+        }
+        
+        //gorges pour colle
+        if(bas) for(i=[0:1:5])
+        {
+            
+               rotate([0,0,35+i*360/6]) translate([0,d/2,-.1]) cylinder(ep+.2,1,1,$fn=20);
         }
         
     }

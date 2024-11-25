@@ -30,16 +30,22 @@ c1();
 //c2();
 
 //translate([0,0,3+hc+9+hc+6]) 
-//projection() pmmaC2();
+projection() pmmaC2();
 
 //projection() 
 //translate([0,0,3+hc+9+hc])
 //supportPMMA();
 
 //translate([0,0,3+hc+9+hc+9+hc]) 
-// projection() 
+//projection() 
 //facade();
 
+/*
+projection() pmmaFacade();
+projection() translate([d2+5,0,0])  pmmaFacade();
+projection() translate([0,d2+5,0])  pmmaFacade();
+projection() translate([d2+5,d2+5,0])  pmmaFacade();
+*/
 
 module fond()
 {
@@ -168,6 +174,8 @@ d=d3-1;
 ep=2.2;
 
 dc=61; // diametre carte centrale;
+ly=52; 
+
 
     difference()
     {
@@ -177,7 +185,7 @@ dc=61; // diametre carte centrale;
             translate([etx,0,0]) cylinder(ep,d/2,d/2,$fn=30);
             translate([etx*2,0,0]) cylinder(ep,d/2,d/2,$fn=30);
             translate([etx*3,0,0]) cylinder(ep,d/2,d/2,$fn=30);       
-            translate([0,-50/2+1,0]) cube([3*etx,50-2,ep]);
+            translate([0,-ly/2,0]) cube([3*etx,ly,ep]);
         }
 
         translate([0,0,-.5]) cylinder(ep+1,dc/2,dc/2,$fn=30);
@@ -238,24 +246,37 @@ module facade()
     {
 
         silouette(ep);
-        translate([0,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=100);
-        translate([etx,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=100);
-        translate([etx*2,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=100);
-        translate([etx*3,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=100);
+        translate([0,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=300);
+        translate([etx,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=300);
+        translate([etx*2,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=300);
+        translate([etx*3,0,-.5]) cylinder(ep+1,d2/2,d2/2,$fn=300);
         
         visCrochet(ep+1,4.2);
 
     }
 
-    translate([0,0,0]) cylinder(ep,d1/2,d1/2,$fn=100);
-    translate([etx,0,0]) cylinder(ep,d1/2,d1/2,$fn=100);
-    translate([etx*2,0,0]) cylinder(ep,d1/2,d1/2,$fn=100);
-    translate([etx*3,0,0]) cylinder(ep,d1/2,d1/2,$fn=100);
+    translate([0,0,0]) cylinder(ep,d1/2,d1/2,$fn=300);
+    translate([etx,0,0]) cylinder(ep,d1/2,d1/2,$fn=300);
+    translate([etx*2,0,0]) cylinder(ep,d1/2,d1/2,$fn=300);
+    translate([etx*3,0,0]) cylinder(ep,d1/2,d1/2,$fn=300);
     //clous();
         
 }
     
-    
+module pmmaFacade()
+{
+
+    difference()
+    {
+
+        translate([0,0,0]) cylinder(ep,d2/2,d2/2,$fn=300);
+        translate([0,0,-.1]) cylinder(ep+.2,d1/2,d1/2,$fn=300);
+
+    }
+
+        
+}
+
 module clous()
 {
     color("gray") translate([0,yclou,0]) clou();
