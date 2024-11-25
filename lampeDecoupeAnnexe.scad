@@ -5,8 +5,8 @@ ep=3;
 
 alphaUsb=90+20-44;
 
-//projection() decoupeFond();
-projection() decoupeVitre();
+projection() decoupeFond();
+//projection() decoupeVitre();
 
 module decoupeFond()
 {
@@ -30,3 +30,8 @@ module decoupeVitre()
         cylinder(ep,dv/2,dv/2,$fn=200);
 }
 
+
+module supportPeinture()
+{
+
+}

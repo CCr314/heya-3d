@@ -35,7 +35,7 @@ difference()
                     }
                     
                     // clip
-                    #translate([r,-l/2,0]) hull()
+                    translate([r,-l/2,0]) hull()
                     {
                         translate([-2.5,0,hp+ep]) cube([5,l,.1]);
                         translate([1,0,hp+ep]) cube([8,l,hclip]);

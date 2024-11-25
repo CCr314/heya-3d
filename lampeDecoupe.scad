@@ -11,15 +11,13 @@ ep2=6;
 //projection()
 // decoupe(false);
 
- /*
+ 
 projection()
  decoupe(false);
 
-*/
-
 //supportVitre();
 
-fixeVitre();
+//fixeVitre();
 
 module supportVitre()
 {
@@ -218,16 +216,26 @@ module decoupe(bas)
         else
             translate([0,14,-.1]) cube([20,18,ep+.2]);
         
-        translate([-7,-12,-.1]) cube([8,30,ep+.2]);
+        //translate([-7,-12,-.1]) cube([8,30,ep+.2]);
         
-        translate([-32,22,-.1]) cube([30,6,ep+.2]);
+        //translate([-32,22,-.1]) cube([30,6,ep+.2]);
         
         
         // composants droite
-        translate([4,-28,-.1]) cube([28,36,ep+.2]);
+        translate([4,-28,-.1]) hull()
+        {
+            cube([20,36,ep+.2]);
+            translate([0,8,0]) cube([28,28,ep+.2]);
+        }
         
         // resistance droite
         translate([25,8,-.1]) cube([10,12,ep+.2]);
+        
+        // passageCable
+        if(!bas)
+        {
+        #translate([20,14,-.1]) cube([10,3,ep+.2]);
+        }
         
         // resistance gauche
         translate([-32,11,-.1]) cube([10,7,ep+.2]);

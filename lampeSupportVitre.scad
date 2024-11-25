@@ -4,19 +4,21 @@ j=1;
 
 l=14;
 
-dn=96;   // diametre nominal
+dn=95;   // diametre nominal
 de=dn-j;
 d=de-epc;
 di=de-8;
 
-r=41;  // Rayon pied de maintien
+r=41.2;  // Rayon pied de maintien
 
-hp=8.2;
+hp=8.4;
 hclip=5;
 
-vitreSupport();
+he=4;  // hauteur epaulement
+
+//vitreSupport();
 //translate([0,0,2*ep]) rotate([180,0,30]) 
-//vitreTour();
+vitreTour();
 
 module vitreSupport()
 {
@@ -26,10 +28,13 @@ module vitreSupport()
         {
             cylinder(ep,d/2,d/2,$fn=200);
 
-            
             intersection()
             {
-                translate([0,0,ep]) cylinder(hp+hclip,d/2,de/2-6.5,$fn=200);
+                union()
+                {
+                    translate([0,0,ep]) cylinder(2*ep,d/2,di/2+ep,$fn=200);
+                    translate([0,0,3*ep]) cylinder(hp+hclip,di/2+ep,r+ep,$fn=200);
+                }
                 for(i=[0:1:2])
                 {
                     rotate([0,0,i*360/3]) translate([0,0,ep]) union()
@@ -37,7 +42,7 @@ module vitreSupport()
                         // pied()
                         hull()
                         {
-                            translate([di/2-1,-l/2,0]) cube([5,l,.1]);
+                            translate([r,-l/2,0]) cube([10,l,.1]);
                             translate([r,-l/2,hp+ep-.1]) cube([4,l,.1]);
                         }
                         
@@ -45,9 +50,10 @@ module vitreSupport()
                         translate([r,-l/2,0]) hull()
                         {
                             translate([-2,0,hp+ep]) cube([5,l,.1]);
-                            translate([1,0,hp+ep]) cube([8,l,hclip]);
+                            translate([2,0,hp+ep]) cube([8,l,hclip]);
                         }
-                        translate([r,-1.5-l/2,0]) cube([8,l+3,4.0]);  // epaulement pied
+                        translate([r,-1.5-l/2,0]) cube([8,l+3,he]);  // epaulement pied
+                       
                     }
 
                 }
@@ -69,9 +75,10 @@ module vitreSupport()
                 }
             }
         }
+
         translate([0,0,-.1]) cylinder(ep+.2,di/2,di/2,$fn=200);
-        translate([0,0,ep]) cylinder(hp+ep,di/2,r,$fn=200);
-        
+        translate([0,0,ep]) cylinder(he,di/2,r,$fn=200);
+         //translate([0,0,he+ep]) cylinder(hp-he+ep,r,r,$fn=200);        
         anneau(de,d,2*ep);
     }
 }
@@ -79,7 +86,7 @@ module vitreSupport()
 module vitreTour()
 {
 d=dn;
-hv=4;
+hv=8+ep; //6+ep;
 j=0.2;
 
 

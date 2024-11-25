@@ -10,7 +10,7 @@ d3=100;
 
 yclou=(d0/2-d2/2)/2+d2/2;
 
-hc=10;
+hc=0;
 
 
 //projection() 
@@ -19,18 +19,22 @@ hc=10;
 //rotate([0,0,-90-45]) translate([-16+.5,24+.5,0]) trappeSD();
 
 
-//color("gray") translate([0,0,3+hc])
+//color("gray") 
+//translate([0,0,3+hc])
 //projection()
-//c1(); 
+c1(); 
 
 
 //translate([0,0,3+hc+9+hc])
 //projection()
-c2();
+//c2();
 
 //translate([0,0,3+hc+9+hc+6]) 
 //projection() pmmaC2();
 
+//projection() 
+//translate([0,0,3+hc+9+hc])
+//supportPMMA();
 
 //translate([0,0,3+hc+9+hc+9+hc]) 
 // projection() 
@@ -85,7 +89,6 @@ module c1()
         {
             silouette(ep);
             
-            
             // Pods
             translate([0,0,-.5]) cylinder(ep+1,d/2,d/2,$fn=30);
             translate([etx,0,-.5]) cylinder(ep+1,d/2,d/2,$fn=30);
@@ -101,6 +104,8 @@ module c1()
             // prise usb + antene
             translate([-10,0,-.5]) cube([12,d/2+5,ep+1]);
             translate([-24/2,-d0/2,-.5]) cube([24,d0/2,ep+1]);
+            translate([+24/2,-d0/2+12,-.1]) cylinder(ep+.2,3,3,$fn=20);
+            translate([-24/2,-d0/2+12,-.1]) cylinder(ep+.2,3,3,$fn=20);
             
             // carte sd
             rotate([0,0,-90-45]) translate([-15,24,0]) cube([30,35,ep]);
@@ -114,7 +119,9 @@ module c1()
             // fixation
             translate([55,40,0]) fixation(ep,10,10);
             translate([3*etx-55,40,0]) fixation(ep,10,10);
-            #trouCentreur(ep);
+            trouCentreur(ep);
+            
+            #visSupportPmma() cylinder(ep+.1,1,1,$fn=20);
         }
         plots(ep,true);
         translate([etx,0,0]) plots(ep);
@@ -141,8 +148,16 @@ module c2()
             
             // decoupe centrale
             translate([0,-ly/2,-.5]) cube([3*etx,ly,ep+1]);
+            
+            // prise usb 
+            translate([-24/2,-d0/2,-.5]) cube([24,d0/2,ep+1]);
+            translate([+24/2,-d0/2+12,-.1]) cylinder(ep+.2,3,3,$fn=20);
+            translate([-24/2,-d0/2+12,-.1]) cylinder(ep+.2,3,3,$fn=20);
+            
             vis() cylinder(ep,1.2,1.2,$fn=20);
             visCrochet(ep+1,4.2);
+            
+            
             #trouCentreur(ep);
         }    
 }
@@ -150,7 +165,7 @@ module c2()
 module pmmaC2()
 {
 d=d3-1;
-ep=3.2;
+ep=2.2;
 
 dc=61; // diametre carte centrale;
 
@@ -169,6 +184,39 @@ dc=61; // diametre carte centrale;
         translate([etx,0,-.5]) cylinder(ep+1,dc/2,dc/2,$fn=30);
         translate([etx*2,0,-.5]) cylinder(ep+1,dc/2,dc/2,$fn=30);
         translate([etx*3,0,-.5]) cylinder(ep+1,dc/2,dc/2,$fn=30);       
+        }
+
+}
+
+module supportPMMA()
+{
+d=d3-1;
+ep=6;
+
+di=d2-2;
+
+dc=61; // diametre carte centrale;
+
+    difference()
+    {
+        union()
+        {
+            translate([0,0,0]) cylinder(ep,d/2,d/2,$fn=30);
+            translate([etx,0,0]) cylinder(ep,d/2,d/2,$fn=30);
+            translate([etx*2,0,0]) cylinder(ep,d/2,d/2,$fn=30);
+            translate([etx*3,0,0]) cylinder(ep,d/2,d/2,$fn=30);       
+            translate([0,-50/2+1,0]) cube([3*etx,50-2,ep]);
+        }
+
+        translate([0,0,-.5]) cylinder(ep+1,di/2,di/2,$fn=30);
+        translate([etx,0,-.5]) cylinder(ep+1,di/2,di/2,$fn=30);
+        translate([etx*2,0,-.5]) cylinder(ep+1,di/2,di/2,$fn=30);
+        translate([etx*3,0,-.5]) cylinder(ep+1,di/2,di/2,$fn=30);   
+        // evidement central
+        
+        translate([-etx/2+3,-28/2,-.1]) cube([4*etx-6,28,ep+.2]);  
+      
+      #visSupportPmma() cylinder(ep+.1,1.7,1.7,$fn=20);
         }
 
 }
@@ -243,6 +291,17 @@ module visCrochet(ep,d)
     translate([3*etx,yclou,0]) cylinder(ep,d/2,d/2,$fn=20);
 }
 
+
+module visSupportPmma()
+{
+    for(x=[0:1:3])
+    {
+        translate([x*etx,0,0]) for(i=[0:1:3])
+        {
+        rotate([0,0,i*90+45]) translate([d2/2+2,0,0]) children(); 
+        }
+    }
+}
 
 module plots(ep,first=false)
 {
