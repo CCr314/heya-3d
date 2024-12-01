@@ -227,19 +227,21 @@ module decoupe(bas)
         
         
         // composants droite
+        translate([8,-8,0]) cube([25,16,ep+.2]);
         translate([4,-28,-.1]) hull()
-        {
-            cube([20,36,ep+.2]);
-            translate([0,8,0]) cube([28,28,ep+.2]);
+        {  
+           translate([0,0,0]) cube([18,14,ep+.2]);
+           translate([0,8,0]) cube([29,12,ep+.2]);
         }
         
         // resistance droite
-        translate([25,8,-.1]) cube([10,12,ep+.2]);
+        translate([25,8,-.1]) cube([8,12,ep+.2]);
         
         // passageCable
         if(!bas)
         {
-        #translate([20,14,-.1]) cube([10,3,ep+.2]);
+        //translate([20,14,-.1])
+        cube([30,20,ep+.2]);
         }
         
         // resistance gauche
@@ -279,11 +281,15 @@ module decoupe(bas)
         }
         
         //gorges pour colle
-        if(bas) for(i=[0:1:5])
+        nb=24;
+        if(bas) for(i=[0:1:nb-1])
         {
             
-               rotate([0,0,35+i*360/6]) translate([0,d/2,-.1]) cylinder(ep+.2,1,1,$fn=20);
+               rotate([0,0,35+i*360/nb]) translate([0,d/2+.5,-.1]) cylinder(ep+.2,1,1,$fn=20);
         }
+        
+        // trou pour support peinture
+        translate([0,0,-.1]) cylinder(ep+.2,4.4,4.4,$fn=20);
         
     }
 }

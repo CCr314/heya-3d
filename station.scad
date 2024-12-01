@@ -13,8 +13,10 @@ yclou=(d0/2-d2/2)/2+d2/2;
 hc=0;
 
 
-//projection() 
-//fond();
+//eclate();
+
+projection() 
+fond();
 
 //rotate([0,0,-90-45]) translate([-16+.5,24+.5,0]) 
 trappeSD();
@@ -34,16 +36,42 @@ trappeSD();
 //projection() pmmaC2();
 
 //projection() 
+<<<<<<< HEAD
 //translate([0,0,3+hc+9+hc])
 //supportPMMA2(false);
 
 //rondelleCarte();
+=======
+//translate([0,0,3+hc+9+hc]supportPMMA();
+>>>>>>> bd7b85adf3aaa121b909cdcca3746dea984009e0
 
 //translate([0,0,3+hc+9+hc+9+hc]) 
 //projection() 
 //facade();
 
 //projection() pmmaFacade();
+
+
+module eclate()
+{
+fond();
+
+//rotate([0,0,-90-45]) translate([-16+.5,24+.5,0]) trappeSD();
+
+translate([0,0,3+hc])
+c1(); 
+
+translate([0,0,3+hc+9+hc])
+c2();
+
+translate([0,0,3+hc+9+hc+6+2*hc]) 
+pmmaC2();
+
+translate([0,0,3+hc+9+hc+1.5*hc]) supportPMMA();
+
+translate([0,0,3+hc+9+hc+9+3*hc]) 
+facade();
+}
 
 
 module fond()

@@ -8,8 +8,6 @@ alphaUsb=0; //90+20-44;
 
 projection() decoupeFond();
 
-
-
 module decoupeFond()
 {
 ep=3;
