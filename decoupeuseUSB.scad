@@ -5,11 +5,15 @@ include <ecrouM8.scad>
 include <secteur.scad>
 
 //roue();
+
+
+supportFraisage();
+
 //entretoise();
 
 //translate([0,0,30]) verrou();
 
-axeponceuse();
+//axeponceuse();
 
 module entretoise(h=6.1)
 {
@@ -161,6 +165,34 @@ module roue()
     }
     
 }
+
+module supportFraisage()
+{
+    di=96;
+    
+    de1=110;
+    de2=120;
+    
+    da=80;
+    dr=22.5;
+    h=32;
+    
+    //ep=4;
+    
+    difference()
+    {
+        union()
+        {
+            cylinder(h-3,di/2,di/2,$fn=100);
+            cylinder(2,di/2+3,di/2+3,$fn=100);
+            translate([0,0,2]) cylinder(4,di/2+.3,di/2,$fn=100);
+            translate([0,0,h-3]) cylinder(3,di/2,di/2-1,$fn=100);
+            
+        }
+        cylinder(h+.2,da/2,da/2,$fn=20);
+    }
+}
+
 
 module verrou()
 {

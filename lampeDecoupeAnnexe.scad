@@ -5,15 +5,10 @@ ep=3;
 
 alphaUsb=0; //90+20-44;
 
-<<<<<<< HEAD
-projection() decoupeFond();
-//projection() decoupeVitre();
-=======
-//projection() decoupeFond();
-//projection() decoupeVitre();
 
-projection() supportPeinture();
->>>>>>> 97d1b8677de46ee80d18b09166d2a0dde53cfb44
+projection() decoupeFond();
+
+
 
 module decoupeFond()
 {
@@ -31,27 +26,3 @@ ep=3;
     }
 }
 
-
-module supportPeinture()
-{
-l=20;
-dv=96;
-    difference()
-    {
-        cylinder(ep,dv/2+.3,dv/2+.3,$fn=200);
-        translate([l/2,l/2,0]) cube([dv/2,dv/2,ep]);
-        translate([-l/2-dv/2,l/2,0]) cube([dv/2,dv/2,ep]);
-        translate([l/2,-l/2-dv/2,0]) cube([dv/2,dv/2,ep]);
-        translate([-l/2-dv/2,-l/2-dv/2,0]) cube([dv/2,dv/2,ep]);
-        cylinder(ep,4.4,4.4,$fn=20);
-    }
-}
-
-
-<<<<<<< HEAD
-module supportPeinture()
-{
-
-}
-=======
->>>>>>> 97d1b8677de46ee80d18b09166d2a0dde53cfb44

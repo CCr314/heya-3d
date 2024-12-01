@@ -16,13 +16,14 @@ hc=0;
 //projection() 
 //fond();
 
-//rotate([0,0,-90-45]) translate([-16+.5,24+.5,0]) trappeSD();
+//rotate([0,0,-90-45]) translate([-16+.5,24+.5,0]) 
+trappeSD();
 
 
 //color("gray") 
 //translate([0,0,3+hc])
 //projection()
-c1(); 
+//c1(); 
 
 
 //translate([0,0,3+hc+9+hc])
@@ -30,22 +31,20 @@ c1();
 //c2();
 
 //translate([0,0,3+hc+9+hc+6]) 
-projection() pmmaC2();
+//projection() pmmaC2();
 
 //projection() 
 //translate([0,0,3+hc+9+hc])
-//supportPMMA();
+//supportPMMA2(false);
+
+//rondelleCarte();
 
 //translate([0,0,3+hc+9+hc+9+hc]) 
 //projection() 
 //facade();
 
-/*
-projection() pmmaFacade();
-projection() translate([d2+5,0,0])  pmmaFacade();
-projection() translate([0,d2+5,0])  pmmaFacade();
-projection() translate([d2+5,d2+5,0])  pmmaFacade();
-*/
+//projection() pmmaFacade();
+
 
 module fond()
 {
@@ -66,7 +65,7 @@ module fond()
 
 module trappeSD()
 {
-ep=3;
+ep=2.6;
 x=31;
 y=41;
 
@@ -77,10 +76,12 @@ y=41;
             cube([x,y,ep]);
 
             // griffe arriere
-            translate([.5,-4,ep]) cube([x-1,8,ep]);
+            #translate([.5,0,ep]) cube([x-1,4,.5]);
+            
+            #translate([.5,-4,ep+.5]) cube([x-1,8,ep]);
         }
         // vis
-        translate([x/2,y-3.5]) cylinder(ep,3,1.6,$fn=20);
+        translate([x/2,y-3.5]) cylinder(ep,3.2,1.2,$fn=20);
     }
     
 }
@@ -127,7 +128,7 @@ module c1()
             translate([3*etx-55,40,0]) fixation(ep,10,10);
             trouCentreur(ep);
             
-            #visSupportPmma() cylinder(ep+.1,1,1,$fn=20);
+            visSupportPmma() cylinder(ep+.1,1,1,$fn=20);
         }
         plots(ep,true);
         translate([etx,0,0]) plots(ep);
@@ -164,7 +165,7 @@ module c2()
             visCrochet(ep+1,4.2);
             
             
-            #trouCentreur(ep);
+            trouCentreur(ep);
         }    
 }
 
@@ -196,10 +197,43 @@ ly=52;
 
 }
 
+
+module supportPMMA2(first=false)
+{
+
+d=d3-1;
+ep=6.8;
+
+di=d2-2;
+
+dc=61; // diametre carte centrale;
+
+    difference()
+    {
+        cylinder(ep,d/2,d/2,$fn=100);
+        translate([0,0,-.1]) cylinder(ep+.2,di/2,di/2,$fn=100);
+        //translate([-d/2,-14,-.1]) cube([d,d,ep+.2]);
+        translate([-etx/2-3,-28/2,2.5]) cube([4*etx+6,28,ep]);  
+        visSupportPmma() cylinder(ep+.1,1.7,1.7,$fn=20);
+        visSupportPmma() cylinder(1.7,3.5,1.7,$fn=20);
+        translate([0,yclou,0]) cylinder(ep,5,5,$fn=20);
+        translate([0,-yclou,0]) cylinder(ep,5,5,$fn=20);
+        
+        translate([d/2-3,-d/2,-.1]) cube([d,d,ep+.2]);
+        translate([-d-d/2+3,-d/2,-.1]) cube([d,d,ep+.2]);
+        if(first)
+        {
+           translate([-10,0,2]) cube([20,d,ep+.2]);
+
+        }
+    }
+
+}
+
 module supportPMMA()
 {
 d=d3-1;
-ep=6;
+ep=7;
 
 di=d2-2;
 
@@ -367,4 +401,20 @@ module trouCentreur(h)
     translate([60,-50,-.1]) cylinder(h+.2,5.2,5.2,$fn=20);
     translate([3*etx-60,-50,-.1]) cylinder(h+.2,5.2,5.2,$fn=20);
 
+}
+
+
+module rondelleCarte()
+{
+ep=2.5;
+di=3.1;
+de=8;
+
+    difference()
+    {
+        cylinder(ep,de/2,de/2,$fn=20);
+        cylinder(ep,di/2,di/2,$fn=20);
+        
     }
+
+}

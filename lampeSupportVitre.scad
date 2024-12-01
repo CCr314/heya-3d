@@ -16,9 +16,9 @@ hclip=5;
 
 he=4;  // hauteur epaulement
 
-//vitreSupport();
+vitreSupport();
 //translate([0,0,2*ep]) rotate([180,0,30]) 
-vitreTour();
+//vitreTour();
 
 module vitreSupport()
 {
@@ -86,7 +86,7 @@ module vitreSupport()
 module vitreTour()
 {
 d=dn;
-hv=8+ep; //6+ep;
+hv=9.5+ep; //6+ep;
 j=0.2;
 
 

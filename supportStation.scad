@@ -1,5 +1,10 @@
 
-calePmma();
+rehaussePMMA();
+
+module rehaussePMMA()
+{
+anneau(6,2.3,.9);
+}
 
 module calePmma()
 {
