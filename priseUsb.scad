@@ -44,7 +44,13 @@ difference()
     {
         intersection()
         {
-           translate([-l/2,di/2-p,0]) cuber([l,p,h],7);
+            
+            union()
+           {
+             translate([-l/2,di/2-p,0])cube([l,p,5.6]);
+           
+            translate([-l/2+2.5,di/2-p,0])cuber([l-5,p,h],6);
+           }
            cylinder(h,di/2,di/2,$fn=100); 
         }
         translate([-l/2,di/2-p+2+1,0]) cylinder(5.6,2.2,2,$fn=20);
@@ -58,6 +64,8 @@ difference()
         translate([deaxe,di/2-p,zu]) trouOblong(p,lu2,hu2/2);
         translate([deaxe,di/2,zu]) trouOblong(p,lu3,hu3/2);
     }
+    
+    translate([0,0,h-3]) cylinder(3,40.5,40.5,$fn=300);
     
 }
 }

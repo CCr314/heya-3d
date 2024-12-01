@@ -5,195 +5,11 @@ d=96;
 ep1=3;
 ep2=6;
 
-//projection() decoupe(false);
-//translate([0,0,5])
-
 //projection()
-
-//supportVitre();
-
-//fixeVitre();
-
-projection()
- decoupe(true);
-
-
-
-//supportVitre();
-
-//tourVitre();
-
-
-module supportVitre()
-{
-j=0.2;
-hclip=5;
-hp=7.8+2.5; 
-ep=.8;
-epf=1.5;
-l=15;
-r=40.5;
-hv=0; //2.8;
-
-    // disque haut
-    difference()
-    {
-        cylinder(hv+epf,d/2-j-ep,d/2-j-ep,$fn=200);
-        translate([0,0,-.1]) cylinder(hv+.1,d/2-j-ep,d/2-j-ep,$fn=200);
-        cylinder(hv+epf+.1,d/2-j-4,d/2-j-4,$fn=200);
-    }
-    
-    // pieds
-    intersection()
-    {
-        translate([0,0,hv+epf]) cylinder(hp+hclip,d/2-j,d/2-j-5,$fn=200);
-        difference()
-        {
-            union()
-            {
-            for(i=[0:1:2])
-            {
-               
-                rotate([0,0,i*360/3]) translate([r+.5,-l/2,hv]) union()
-                {
-                    cube([8,l,hp]);
-                    #translate([0,-1.5,0]) cube([8,l+3,4.2+1.6]);  // epaulement pied
-                    hull()
-                    {
-                        translate([-1.8,0,hp]) cube([9.5,l,.1]);
-                        #translate([1,0,hp]) cube([8,l,hclip]);
-                    }
-                    
-                }
-           }
-           
-           // renfort intermediaire
-            difference()
-            {
-                for(i=[0:1:2])
-                {
-                   
-                    rotate([0,0,i*360/3+360/6]) translate([r+.5,-l/2,hv]) 
-                        cube([8,l,2*ep+epf]);
-               }
-               
-               // disque interieur
-               cylinder(2*ep+epf+hv,d/2-j-4,d/2-j-4,$fn=200);
-               
-               difference()
-               {
-                cylinder(ep+epf+hv,d/2-j+ep,d/2-j+ep,$fn=200);
-                cylinder(ep+epf+hv,d/2-j-ep,d/2-j-ep,$fn=200);
-               }
-           }
-       }
-           
-           hull()
-           {
-               translate([0,0,hv-.1]) cylinder(epf,d/2-j-4,d/2-j-4,$fn=200);
-               for(i=[0:1:2])
-                {
-               
-                rotate([0,0,i*360/3]) translate([0,-l/2,hv+hp-2])  cube([r+.5,l,2]);
-                }
-             
-           }
-        }
-    }
-    
-
-
-}
-
-module tourVitre()
-{
-hv=3;
-j=0.2;
-hclip=5;
-hp=7.8+2.5; 
-ep=.8;
-epf=1.5;
-l=15;
-r=40.5;
-
-   // disque haut
-    difference()
-    {
-        cylinder(hv+epf+ep,d/2-j,d/2-j,$fn=200);
-        cylinder(hv+epf+.1+ep,d/2-j-ep,d/2-j-ep,$fn=200);
-    }
-    
-    for(i=[0:1:5])
-    {
-       
-        rotate([0,0,i*360/6]) intersection()
-        {
-            cylinder(hv+epf+ep,d/2-j,d/2-j,$fn=200);
-            translate([d/2-j-2,-l/2,0]) cube([2,l,ep]);
-            
-        }
-   }
-
-}
-
-
-module supportVitreSav()
-{
-j=0.2;
-hclip=5;
-hp=7.8+2.5; 
-ep=.8;
-epf=1.5;
-l=15;
-r=40.5;
-hv=2.8;
-
-    // disque haut
-    difference()
-    {
-        cylinder(hv+epf,d/2-j,d/2-j,$fn=200);
-        translate([0,0,-.1]) cylinder(hv+.1,d/2-j-ep,d/2-j-ep,$fn=200);
-        cylinder(hv+epf+.1,d/2-j-4,d/2-j-4,$fn=200);
-    }
-    
-    // pieds
-    intersection()
-    {
-        translate([0,0,hv]) cylinder(hp+hclip,d/2-j-.5,d/2-j-5,$fn=200);
-        difference()
-        {
-            for(i=[0:1:2])
-            {
-               
-                rotate([0,0,i*360/3]) translate([r+.5,-l/2,hv]) union()
-                {
-                    cube([8,l,hp]);
-                    translate([0,-1.5,0]) cube([8,l+3,4.2+1.6]);  // epaulement pied
-                    hull()
-                    {
-                        translate([-1.8,0,hp]) cube([9.5,l,.1]);
-                        translate([1,0,hp]) cube([8,l,hclip]);
-                    }
-                    
-                }
-           }
-           
-           hull()
-           {
-               translate([0,0,hv-.1]) cylinder(epf,d/2-j-4,d/2-j-4,$fn=200);
-               for(i=[0:1:2])
-                {
-               
-                rotate([0,0,i*360/3]) translate([0,-l/2,hv+hp-2])  cube([r+.5,l,2]);
-                }
-             
-           }
-        }
-    }
-    
-
-
-}
+//decoupe(true);
+// translate([0,0,6]) decoupe(false);
+decoupeFond();
+ 
 
 module decoupe(bas)
 {
@@ -201,7 +17,10 @@ module decoupe(bas)
 
     difference()
     {
-        cylinder(ep,d/2,d/2,$fn=100);
+        if(bas)
+            cylinder(ep,d/2,d/2,$fn=100);
+        else
+            cylinder(ep,d/2-1,d/2-1,$fn=100);
         
         // module usb
         translate([-16/2,16,-.1]) cube([16,32,ep+.2]);
@@ -285,7 +104,7 @@ module decoupe(bas)
         if(bas) for(i=[0:1:nb-1])
         {
             
-               rotate([0,0,35+i*360/nb]) translate([0,d/2+.5,-.1]) cylinder(ep+.2,1,1,$fn=20);
+               rotate([0,0,35+i*360/nb]) translate([0,d/2+.5,-.1]) cylinder(ep+.2,2,2,$fn=20);
         }
         
         // trou pour support peinture
@@ -293,3 +112,23 @@ module decoupe(bas)
         
     }
 }
+
+
+module decoupeFond()
+{
+ep=3;
+di=95.2;  // diametre intérieur tube
+
+    difference()
+    {
+        cylinder(ep,di/2,di/2,$fn=100);
+        for(i=[0:1:2])
+        {
+            rotate([0,0,-1+i*360/3]) translate([0,37,0])       cylinder(ep,2.5,2.5,$fn=100);
+        }
+        
+         translate([-20/2,-20.5-15/2+2,0])  cube([20,12,ep+.1]);
+         translate([0,19.5,0])  cylinder(ep,2,2,$fn=100);
+    }
+}
+

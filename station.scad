@@ -15,11 +15,11 @@ hc=0;
 
 //eclate();
 
-projection() 
-fond();
+//projection() 
+//fond();
 
 //rotate([0,0,-90-45]) translate([-16+.5,24+.5,0]) 
-trappeSD();
+//trappeSD();
 
 
 //color("gray") 
@@ -35,15 +35,11 @@ trappeSD();
 //translate([0,0,3+hc+9+hc+6]) 
 //projection() pmmaC2();
 
-//projection() 
-<<<<<<< HEAD
 //translate([0,0,3+hc+9+hc])
-//supportPMMA2(false);
+supportPMMA2(false);
 
 //rondelleCarte();
-=======
-//translate([0,0,3+hc+9+hc]supportPMMA();
->>>>>>> bd7b85adf3aaa121b909cdcca3746dea984009e0
+
 
 //translate([0,0,3+hc+9+hc+9+hc]) 
 //projection() 
@@ -230,7 +226,7 @@ module supportPMMA2(first=false)
 {
 
 d=d3-1;
-ep=6.8;
+ep=7.8;
 
 di=d2-2;
 
