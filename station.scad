@@ -13,8 +13,10 @@ yclou=(d0/2-d2/2)/2+d2/2;
 hc=0;
 
 
-//projection() 
-//fond();
+//eclate();
+
+projection() 
+fond();
 
 //rotate([0,0,-90-45]) translate([-16+.5,24+.5,0]) trappeSD();
 
@@ -22,7 +24,7 @@ hc=0;
 //color("gray") 
 //translate([0,0,3+hc])
 //projection()
-c1(); 
+//c1(); 
 
 
 //translate([0,0,3+hc+9+hc])
@@ -30,11 +32,10 @@ c1();
 //c2();
 
 //translate([0,0,3+hc+9+hc+6]) 
-projection() pmmaC2();
+//projection() pmmaC2();
 
 //projection() 
-//translate([0,0,3+hc+9+hc])
-//supportPMMA();
+//translate([0,0,3+hc+9+hc]supportPMMA();
 
 //translate([0,0,3+hc+9+hc+9+hc]) 
 //projection() 
@@ -46,6 +47,28 @@ projection() translate([d2+5,0,0])  pmmaFacade();
 projection() translate([0,d2+5,0])  pmmaFacade();
 projection() translate([d2+5,d2+5,0])  pmmaFacade();
 */
+
+module eclate()
+{
+fond();
+
+//rotate([0,0,-90-45]) translate([-16+.5,24+.5,0]) trappeSD();
+
+translate([0,0,3+hc])
+c1(); 
+
+translate([0,0,3+hc+9+hc])
+c2();
+
+translate([0,0,3+hc+9+hc+6+2*hc]) 
+pmmaC2();
+
+translate([0,0,3+hc+9+hc+1.5*hc]) supportPMMA();
+
+translate([0,0,3+hc+9+hc+9+3*hc]) 
+facade();
+}
+
 
 module fond()
 {
