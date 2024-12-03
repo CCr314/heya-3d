@@ -36,7 +36,7 @@ hc=0;
 //projection() pmmaC2();
 
 //translate([0,0,3+hc+9+hc])
-supportPMMA2(false);
+supportPMMA2(true);
 
 //rondelleCarte();
 
@@ -226,7 +226,7 @@ module supportPMMA2(first=false)
 {
 
 d=d3-1;
-ep=7.8;
+ep=8.1;
 
 di=d2-2;
 
