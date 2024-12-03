@@ -7,11 +7,11 @@ include <secteur.scad>
 //roue();
 
 
-supportFraisage();
+//supportFraisage();
 
 //entretoise();
 
-//translate([0,0,30]) verrou();
+translate([0,0,30]) verrou();
 
 //axeponceuse();
 
@@ -208,8 +208,16 @@ dr=22.5;
     {
     intersection()
     {
-        cylinder(h+.1,di/2-1.2*ep-.5,di/2-1.2*ep-.5,$fn=100);
-        translate([-di/2-ep/2,-di/2-ep/2,0]) cube([di/2,di/2,h+.1]);
+        union()
+        {
+        translate([0,0,5]) cylinder(h+.1,di/2-1.2*ep-.5,di/2-1.2*ep-.5,$fn=100);
+        cylinder(5,di/2-1.2*ep-.5-5,di/2-1.2*ep-.5,$fn=100);
+        }
+        hull()
+        {
+            translate([-di/2-ep/2,-di/2-ep/2,5]) cube([di/2,di/2,h+.1-5]);
+            translate([-di/2-ep/2,-di/2-ep/2,0]) cube([di/2-5,di/2-5,h+.1]);
+        }
     }
     translate([0,0,h-3]) intersection()
     {
@@ -218,9 +226,12 @@ dr=22.5;
     }
     }
     translate([-34,-9.8,0])
+    union()
+    {
         cylinder(h-3,12,12,$fn=20);
-    translate([-34,-9.8,0])
+        cylinder(5,12+5,12,$fn=20);
         cylinder(h+.2,4.5,4.5,$fn=20);
+    }
     cylinder(h+.2,14.3,14.3,$fn=20);
     }
 }
