@@ -7,7 +7,7 @@ ep2=6;
 
 projection()
 
-decoupe(false,true);
+decoupe(true,true);
 // translate([0,0,6]) decoupe(false);
 //decoupeFond();
 
@@ -24,13 +24,13 @@ module decoupe(bas,test=false)
             cylinder(ep,d/2-1,d/2-1,$fn=100);
         
         // module usb
-        yusb=test?12:32;
+        yusb=32;
         #translate([-16/2,16,-.1]) cube([16,yusb,ep+.2]);
         if(bas||test)
         {
             translate([-22/2,16+12,-.1]) cube([22,yusb,ep+.2]);
-            if(!test) translate([-22/2,d/2-8+2,-.1]) cylinder(ep+.2,2.2,2.2,$fn=20);
-            if(!test) translate([22/2,d/2-8+2,-.1]) cylinder(ep+.2,2.2,2.2,$fn=20);
+            translate([-22/2,d/2-8+2,-.1]) cylinder(ep+.2,2.2,2.2,$fn=20);
+            translate([22/2,d/2-8+2,-.1]) cylinder(ep+.2,2.2,2.2,$fn=20);
         }
         else
         {
@@ -96,8 +96,8 @@ module decoupe(bas,test=false)
             if(test)
                 rotate([0,0,24-40+i*360/3]) union()
                 {
-                    translate([-20/2,38,-.1]) cube([20,10,ep+.2]); 
-                    translate([-20/2,41,-.1]) cube([25,10,ep+.2]); 
+                    translate([-18/2,38,-.1]) cube([18,10,ep+.2]); 
+                    translate([-18/2,41,-.1]) cube([25,10,ep+.2]); 
                     }
 
             
