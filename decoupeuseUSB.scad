@@ -4,14 +4,14 @@ include <ecrouM4.scad>
 include <ecrouM8.scad>
 include <secteur.scad>
 
-//roue();
+roue();
 
 
 //supportFraisage();
 
 //entretoise();
 
-translate([0,0,30]) verrou();
+//translate([0,0,30]) verrou();
 
 //axeponceuse();
 
@@ -103,7 +103,9 @@ module roue()
     di=96;
     da=18;
     dr=22.5;
-    h=20;
+    h=22;
+    
+    hbutee=4;
     
     //ep=4;
     
@@ -112,8 +114,8 @@ module roue()
         union()
         {
             cylinder(h-3,di/2,di/2,$fn=100);
-            cylinder(2,di/2+3,di/2+3,$fn=100);
-            translate([0,0,2]) cylinder(4,di/2+.3,di/2,$fn=100);
+            cylinder(hbutee,di/2+3,di/2+3,$fn=100);
+            translate([0,0,hbutee]) cylinder(4,di/2+.3,di/2,$fn=100);
             translate([0,0,h-3]) cylinder(3,di/2,di/2-1,$fn=100);
             
         }
@@ -141,18 +143,18 @@ module roue()
             cylinder(h+.1,14,14,$fn=20);
         }
         
-        translate([di/2-15,0,10]) rotate([-90,0,0]) ecrouM4(6);
-        translate([di/2-15,-6,10]) rotate([-90,0,0]) cylinder(20,2.2,2.2,$fn=20);
-        translate([di/2-15,-40-5,10]) rotate([-90,0,0]) cylinder(40,5,5,$fn=20);
-        translate([0,di/2-15,10]) rotate([0,90,0]) ecrouM4(6);
-        translate([-6,di/2-15,10]) rotate([0,90,0]) cylinder(20,2.2,2.2,$fn=20);
-        translate([-40-5,di/2-15,10]) rotate([0,90,0]) cylinder(40,5,5,$fn=20);
+        translate([di/2-15,0,12]) rotate([-90,0,0]) ecrouM4(6);
+        translate([di/2-15,-6,12]) rotate([-90,0,0]) cylinder(20,2.2,2.2,$fn=20);
+        translate([di/2-15,-40-5,12]) rotate([-90,0,0]) cylinder(40,5,5,$fn=20);
+        translate([0,di/2-15,12]) rotate([0,90,0]) ecrouM4(6);
+        translate([-6,di/2-15,12]) rotate([0,90,0]) cylinder(20,2.2,2.2,$fn=20);
+        translate([-40-5,di/2-15,12]) rotate([0,90,0]) cylinder(40,5,5,$fn=20);
         
         // trou fraise
         hull()
         {
-            rotate([0,0,-90-45+5]) translate([di/2-15,0,10]) rotate([0,90,0]) cylinder(20,5,5,$fn=20);
-            rotate([0,0,-90-45-5]) translate([di/2-15,0,10]) rotate([0,90,0]) cylinder(20,5,5,$fn=20);
+            rotate([0,0,-90-45+5]) translate([di/2-15,0,10+2]) rotate([0,90,0]) cylinder(20,5,5,$fn=20);
+            rotate([0,0,-90-45-5]) translate([di/2-15,0,10+2]) rotate([0,90,0]) cylinder(20,5,5,$fn=20);
         }
     }
     

@@ -1,7 +1,7 @@
 d=100.3;
 
-ep=2;
-epc=1.2;
+ep=4;
+epc=4;
 
 h=8;
 
@@ -10,7 +10,7 @@ difference()
 {
 cylinder(ep+h,d/2+epc,d/2+epc,$fn=100);
 cylinder(h,d/2,d/2,$fn=100);
-cylinder(2,d/2+2,d/2,$fn=100);
+cylinder(3,d/2+2,d/2,$fn=100);
 cylinder(ep+h,4.2,4.2,$fn=20);
 
 intersection()

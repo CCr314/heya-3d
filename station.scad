@@ -1,5 +1,7 @@
 // couches station
 
+include <secteur.scad>
+
 ep=3;
 d0=128;
 etx=95;
@@ -36,7 +38,8 @@ hc=0;
 //projection() pmmaC2();
 
 //translate([0,0,3+hc+9+hc])
-supportPMMA2(true);
+//translate([0,0,8+9]) rotate([0,180,180])  
+supportPMMA2(false);
 
 //rondelleCarte();
 
@@ -90,7 +93,7 @@ module fond()
 module trappeSD()
 {
 ep=2.6;
-x=31;
+x=31.5;
 y=41;
 
     difference()
@@ -153,6 +156,10 @@ module c1()
             trouCentreur(ep);
             
             visSupportPmma() cylinder(ep+.1,1,1,$fn=20);
+           
+            // decoupe pour antenne
+            translate([0,0,-.1]) secteur2(ep+.2,101,145,215);
+            
         }
         plots(ep,true);
         translate([etx,0,0]) plots(ep);
@@ -190,6 +197,8 @@ module c2()
             
             
             trouCentreur(ep);
+
+            
         }    
 }
 
@@ -234,23 +243,34 @@ dc=61; // diametre carte centrale;
 
     difference()
     {
-        cylinder(ep,d/2,d/2,$fn=100);
+        union()
+        {
+            cylinder(ep,d/2,d/2,$fn=100);
+            if(first)
+                secteur2(ep+5,d,147,213);
+        }
         translate([0,0,-.1]) cylinder(ep+.2,di/2,di/2,$fn=100);
-        //translate([-d/2,-14,-.1]) cube([d,d,ep+.2]);
-        translate([-etx/2-3,-28/2,2.5]) cube([4*etx+6,28,ep]);  
+        if(first)
+            translate([0,-28/2,2.5]) cube([d+.2,28,ep]);  
+        else
+            translate([-d/2-.1,-28/2,2.5]) cube([d+.2,28,ep]);  
+        
         visSupportPmma() cylinder(ep+.1,1.7,1.7,$fn=20);
         visSupportPmma() cylinder(1.7,3.5,1.7,$fn=20);
         translate([0,yclou,0]) cylinder(ep,5,5,$fn=20);
         translate([0,-yclou,0]) cylinder(ep,5,5,$fn=20);
         
         translate([d/2-3,-d/2,-.1]) cube([d,d,ep+.2]);
-        translate([-d-d/2+3,-d/2,-.1]) cube([d,d,ep+.2]);
+        if(!first) translate([-d-d/2+3,-d/2,-.1]) cube([d,d,ep+.2]);
         if(first)
         {
            translate([-10,0,2]) cube([20,d,ep+.2]);
-
+           translate([0,0,-.1])secteur2(ep+5+.2,d-5,146,214);
         }
+
     }
+    
+
 
 }
 
