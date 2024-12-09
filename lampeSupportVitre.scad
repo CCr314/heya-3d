@@ -16,9 +16,31 @@ hclip=5;
 
 he=4;  // hauteur epaulement
 
-vitreSupport();
+//vitreSupport();
 //translate([0,0,2*ep]) rotate([180,0,30]) 
 //vitreTour();
+
+vitreRenfort();
+
+module vitreRenfort()
+{
+ri=44;
+ep=2.5;
+h=2;
+    difference()
+    {
+        cylinder(h,ri+ep,ri+ep,$fn=100);
+        translate([0,0,-.1]) cylinder(h+.2,ri-3,ri-3,$fn=100);
+        
+        for(i=[0:1:2])
+        rotate([0,0,i*360/3]) translate([ri-4,-18/2,-.1]) cube([4,18,h+.2]);
+        
+    }
+
+
+
+}
+
 
 module vitreSupport()
 {

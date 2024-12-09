@@ -6,8 +6,10 @@ ep1=3;
 ep2=6;
 
 projection()
+gabaritCollage();
 
-decoupe(true,true);
+
+//decoupe(false,false);
 // translate([0,0,6]) decoupe(false);
 //decoupeFond();
 
@@ -25,7 +27,7 @@ module decoupe(bas,test=false)
         
         // module usb
         yusb=32;
-        #translate([-16/2,16,-.1]) cube([16,yusb,ep+.2]);
+        translate([-16/2,16,-.1]) cube([16,yusb,ep+.2]);
         if(bas||test)
         {
             translate([-22/2,16+12,-.1]) cube([22,yusb,ep+.2]);
@@ -92,7 +94,7 @@ module decoupe(bas,test=false)
             if(bas)
                 rotate([0,0,-40+i*360/3]) translate([-16/2,38,-.1]) cube([16,10,ep+.2]); 
             else
-                rotate([0,0,-40+i*360/3]) translate([-16/2,41,-.1]) cube([16,7,ep+.2]); 
+                #rotate([0,0,-40+i*360/3]) translate([-16/2,41,-.1]) cube([16,7,ep+.2]); 
             if(test)
                 rotate([0,0,24-40+i*360/3]) union()
                 {
@@ -123,6 +125,33 @@ module decoupe(bas,test=false)
     }
 }
 
+
+module gabaritCollage()
+{
+    ep=ep1;
+
+    difference()
+    {
+        cylinder(ep,d/2+4,d/2+4,$fn=100);       
+        
+        for(i=[0:1:2])
+        {
+            // pieds vitre
+            rotate([0,0,-40+i*360/3]) translate([-16/2-1,41,-.1]) hull()
+            {
+                cube([.1,4,ep+.2]); 
+               cube([16+1,3.2,ep+.2]);
+            }
+            rotate([0,0,24-40+i*360/3]) union()
+            {
+                translate([-18/2,38,-.1]) cube([18,6,ep+.2]); 
+                translate([-18/2,41,-.1]) cube([20,6,ep+.2]); 
+             }            
+
+        }
+        
+    }
+}
 
 module decoupeFond()
 {
