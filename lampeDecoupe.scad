@@ -139,14 +139,19 @@ module gabaritCollage()
             // pieds vitre
             rotate([0,0,-40+i*360/3]) translate([-16/2-1,41,-.1]) hull()
             {
-                cube([.1,4,ep+.2]); 
-               cube([16+1,3.2,ep+.2]);
+                cube([.1,3,ep+.2]); 
+               cube([16+1,2.8,ep+.2]);
             }
             rotate([0,0,24-40+i*360/3]) union()
             {
                 translate([-18/2,38,-.1]) cube([18,6,ep+.2]); 
                 translate([-18/2,41,-.1]) cube([20,6,ep+.2]); 
-             }            
+            }            
+           rotate([0,0,24-40+i*360/3]) hull()
+            {
+                #translate([18/2-5,40,-.1]) cube([11,.1,ep+.2]); 
+               translate([18/2-5,38,-.1]) cube([5,2,ep+.2]); 
+            }            
 
         }
         

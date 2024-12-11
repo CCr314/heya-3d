@@ -4,7 +4,7 @@ include <ecrouM4.scad>
 include <ecrouM8.scad>
 include <secteur.scad>
 
-roue();
+//roue();
 
 
 //supportFraisage();
@@ -14,8 +14,12 @@ roue();
 //translate([0,0,30]) verrou();
 
 //axeponceuse();
+butee();
 
-module entretoise(h=6.1)
+
+
+
+module entretoise(h=7.6)
 {
     difference()
     {
@@ -59,7 +63,7 @@ module butee()
     alpha=35;
     lmin=30;
     lmax=40;
-    h=20;
+    h=25;
     hr=3;
     difference()
     {
