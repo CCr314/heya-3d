@@ -2,9 +2,9 @@
 
 include <ecrous.scad>
 
-h1=5;
+h1=2;
 
-h3=20;
+h3=15;
 
 d=25;
 
@@ -18,7 +18,7 @@ translate([0,0,h3-2]) cylinder(2,d/2,d/2-2);
 translate([0,0,h3]) cylinder(h1,8,8);
 
 }
-ecrouM8(15);
+ecrouM8(h3-2);
 cylinder(h1+h3,4.4,4.4);
 
 for(i=[0:1:5])
