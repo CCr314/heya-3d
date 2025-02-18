@@ -1,6 +1,6 @@
 // prise USB Station
 
-h=16;
+h=19;
 x=23.5;
 y=14;
 d0=128;
@@ -9,7 +9,7 @@ r=3;      // rayon plot
 
 j=.3;
 
-haut();
+//haut();
 translate([0,y+4,0]) bas();
 
 module bas()
@@ -42,8 +42,8 @@ difference()
     }
     hull()
     {
-        translate([x/2,-.1,5+3.5]) rotate([-90,0,0]) cylinder(y+.2,3.5,3.5,$fn=20);
-        translate([x/2,-.1,5+3.5+h]) rotate([-90,0,0]) cylinder(y+.2,3.5,3.5,$fn=20);
+        translate([x/2,-.1,5+5.5]) rotate([-90,0,0]) cylinder(y+.2,3.5,3.5,$fn=20);
+        translate([x/2,-.1,5+5.5+h]) rotate([-90,0,0]) cylinder(y+.2,3.5,3.5,$fn=20);
     }
     hull()
     {

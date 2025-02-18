@@ -39,7 +39,7 @@ hc=0;
 
 //translate([0,0,3+hc+9+hc])
 //translate([0,0,8+9]) rotate([0,180,180])  
-supportPMMA2(false);
+supportPMMA2(true);
 
 //rondelleCarte();
 
@@ -235,7 +235,7 @@ module supportPMMA2(first=false)
 {
 
 d=d3-1;
-ep=8.1;
+ep=8.1+3;
 
 di=d2-2;
 
@@ -266,6 +266,7 @@ dc=61; // diametre carte centrale;
         {
            translate([-10,0,2]) cube([20,d,ep+.2]);
            translate([0,0,-.1])secteur2(ep+5+.2,d-5,146,214);
+           rotate([0,0,-45]) translate([-15,0,4]) cube([30,d,ep+.2]);
         }
 
     }
@@ -450,7 +451,7 @@ module trouCentreur(h)
 
 module rondelleCarte()
 {
-ep=2.5;
+ep=2.1;
 di=3.1;
 de=8;
 

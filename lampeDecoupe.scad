@@ -5,14 +5,25 @@ d=96;
 ep1=3;
 ep2=6;
 
-projection()
-gabaritCollage();
+//projection()
+//gabaritCollage();
 
 
-//decoupe(false,false);
-// translate([0,0,6]) decoupe(false);
-//decoupeFond();
+translate([0,0,0]) decoupe(true,false);
+translate([0,0,20]) decoupe(false);
+translate([0,0,-60]) decoupeFond();
 
+
+translate([0,0,-40]) difference()
+{
+    cylinder(29,50,50,$fn=200);
+    cylinder(29,d/2,d/2,$fn=200);
+    translate([0,d/2-2,9]) rotate([-90,0,0]) hull()
+    {
+        translate([-2.5,0,0]) cylinder(10,4,4,$fn=20);
+        translate([2.5,0,0]) cylinder(10,4,4,$fn=20);
+    }
+}
  
 module decoupe(bas,test=false)
 {
@@ -94,7 +105,7 @@ module decoupe(bas,test=false)
             if(bas)
                 rotate([0,0,-40+i*360/3]) translate([-16/2,38,-.1]) cube([16,10,ep+.2]); 
             else
-                #rotate([0,0,-40+i*360/3]) translate([-16/2,41,-.1]) cube([16,7,ep+.2]); 
+                rotate([0,0,-40+i*360/3]) translate([-16/2,41,-.1]) cube([16,7,ep+.2]); 
             if(test)
                 rotate([0,0,24-40+i*360/3]) union()
                 {
@@ -149,7 +160,7 @@ module gabaritCollage()
             }            
            rotate([0,0,24-40+i*360/3]) hull()
             {
-                #translate([18/2-5,40,-.1]) cube([11,.1,ep+.2]); 
+                translate([18/2-5,40,-.1]) cube([11,.1,ep+.2]); 
                translate([18/2-5,38,-.1]) cube([5,2,ep+.2]); 
             }            
 
